@@ -1,0 +1,49 @@
+<html>
+<head>
+  <script src="p5.min.js"></script>
+</head>
+<body>
+<script>
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+  var ball = new ball(); //I am creating a new object globally
+  
+  function setup() {
+  createCanvas(w,h);
+  }
+  
+  function draw() {
+    background(225);
+    ball.show();
+    ball.move();
+  }
+  
+  function ball() {
+    this.x = 100;
+    this.y = 100;
+    this.show = function() {
+      fill(color('red'));
+      ellipse(this.x,this.y,100,100);
+      
+      this.move = function() {
+      if (keyIsDown(39)) {  //Right Arrow
+      this.x += 10;
+      }
+      if (keyIsDown(37)) { //Left Arrow
+      this.x -= 10;
+      }
+      if (keyIsDown(38)) { //Up Arrow
+      this.y -= 10;
+      }
+      if (keyIsDown(40)) {//Down Arrow
+      this.y += 10;
+      }
+      
+      
+      }
+    }
+  }
+</script>
+</body>
+</html>
+  
