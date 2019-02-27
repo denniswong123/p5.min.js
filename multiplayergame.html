@@ -1,0 +1,86 @@
+<html>
+<head>
+  <script src="p5.min.js"></script>
+</head>
+<body>
+<script>
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+  var ball = new ball(); //I am creating a new object globally
+  var bruh = new bruh();
+  var d;
+  function setup() {
+  createCanvas(w,h);
+  }
+  
+  function draw() {
+    background(225);
+    ball.show();
+    ball.move();
+    bruh.show();
+    bruh.move();
+    bruh.kill();
+  }
+  
+  function ball() {
+    this.x = 100;
+    this.y = 100;
+    this.show = function() {
+      fill(color('red'));
+      ellipse(this.x,this.y,50,50);
+      
+      this.move = function() {
+      if ((keyIsDown(39)) && (this.x < w-30)) {  //Right Arrow
+      this.x += 10;
+      }
+      if ((keyIsDown(37)) && (this.x > 30)) { //Left Arrow
+      this.x -= 10;
+      }
+      if ((keyIsDown(38)) && (this.y > 30)) { //Up Arrow
+      this.y -= 10;
+      }
+      if ((keyIsDown(40)) && (this.y < h-30)) {//Down Arrow
+      this.y += 10;
+      }
+      
+      
+      }
+    }
+  }
+  
+   function bruh() {
+    this.x = Math.floor(Math.random()* (w-100));
+    this.y = Math.floor(Math.random()* (h-100));
+    this.show = function() {
+      fill(color('blue'));
+      ellipse(this.x,this.y,50,50);
+      
+      this.move = function() {
+        
+      if ((keyIsDown(68)) && (this.x < w-30)) {  //key D
+      this.x += 10;
+      }
+      if ((keyIsDown(65)) && (this.x > 30)) { //key A
+      this.x -= 10;
+      }
+      if ((keyIsDown(87)) && (this.y > 30)) { //key W
+      this.y -= 10;
+      }
+      if ((keyIsDown(83)) && (this.y < h-30)){//key S
+      this.y += 10;
+      }
+      
+      this.kill = function() {
+        d = dist(this.x,this.y,ball.x,ball.y);
+        if (d < 35) {
+          noLoop();
+          window.alert("You Lose");
+        }
+      }
+      
+      }
+    }
+  }
+</script>
+</body>
+</html>
